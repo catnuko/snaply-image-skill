@@ -1,5 +1,7 @@
 # snaply-image
 
+> **中文** | [English](./README_EN.md)
+
 把文字描述变成一张设计好的图片：写一个单文件 JSX 组件，用本地 [Takumi](https://takumi.rs) 引擎渲染成 PNG / JPEG / WebP（也支持 SVG 和动画 WebP / GIF / APNG），**无需浏览器、无需网站、无需云服务**。
 
 渲染即布局，所以你能精确控制每个像素，并通过反复「渲染 → 看图 → 修改」来打磨结果。
