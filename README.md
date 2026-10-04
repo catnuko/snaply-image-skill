@@ -8,6 +8,8 @@
 
 ![OG blog card](readme-assets/og-blog-card.png)
 
+💬 有问题或想法？[开讨论](https://github.com/catnuko/snaply-image-skill/discussions) · 🐛 [报bug](https://github.com/catnuko/snaply-image-skill/issues)
+
 ## 适合什么
 
 - OG / Twitter 分享图、公众号封面、social card
@@ -191,6 +193,19 @@ node scripts/render.mjs <input.jsx> [-o out.png] [--width N] [--height N]
 - 引擎支持的是 Tailwind 风格的**子集**：复杂 CSS（grid、伪元素、外部自定义字体文件等）部分支持或报错，报错信息会指明问题属性
 
 更多能力（Tailwind 支持范围、SVG、动画 WebP / GIF、keyframes、常见报错）见 [`references/jsx-guide.md`](references/jsx-guide.md)。
+
+## 反馈与讨论
+
+有问题、想法、想看别人渲染了什么，都来讨论区：
+**[💬 Discussions](https://github.com/catnuko/snaply-image-skill/discussions)**
+
+| 场景 | 去哪 |
+| --- | --- |
+| 明确的 bug、复现步骤清楚 | [Issues](https://github.com/catnuko/snaply-image-skill/issues) |
+| 用法提问、功能提案、单个示例定制 | [Discussions](https://github.com/catnuko/snaply-image-skill/discussions) |
+| 展示你渲染出来的图 | [Show and tell](https://github.com/catnuko/snaply-image-skill/discussions/categories/show-and-tell) |
+
+新来的先看这篇：[欢迎来到 snaply-image 讨论区](https://github.com/catnuko/snaply-image-skill/discussions/1)。
 
 ## License
 

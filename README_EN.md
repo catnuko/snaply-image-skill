@@ -8,6 +8,8 @@ Rendering *is* layout, so you get pixel-level control and can polish the result 
 
 ![OG blog card](readme-assets/og-blog-card.png)
 
+💬 Questions or ideas? [Start a discussion](https://github.com/catnuko/snaply-image-skill/discussions) · 🐛 [Report a bug](https://github.com/catnuko/snaply-image-skill/issues)
+
 ## What it's for
 
 - OG / Twitter share cards, WeChat official-account covers, social cards
@@ -189,6 +191,19 @@ Sources live in [`examples/`](examples/), rendered outputs in `readme-assets/`.
 - The engine supports a **subset** of Tailwind-style CSS. Complex CSS (grid, pseudo-elements, external custom font files, etc.) is partially supported or errors out; the error message points at the offending property.
 
 For more (Tailwind support range, SVG, animated WebP / GIF, keyframes, common errors) see [`references/jsx-guide.md`](references/jsx-guide.md).
+
+## Feedback and discussion
+
+Questions, ideas, or you just want to see what others have rendered — come to the discussion area:
+**[💬 Discussions](https://github.com/catnuko/snaply-image-skill/discussions)**
+
+| Situation | Where |
+| --- | --- |
+| Clear bug with reproducible steps | [Issues](https://github.com/catnuko/snaply-image-skill/issues) |
+| Usage questions, feature proposals, one-off example tweaks | [Discussions](https://github.com/catnuko/snaply-image-skill/discussions) |
+| Show off what you rendered | [Show and tell](https://github.com/catnuko/snaply-image-skill/discussions/categories/show-and-tell) |
+
+New here? Start with: [Welcome to the snaply-image discussion area](https://github.com/catnuko/snaply-image-skill/discussions/1).
 
 ## License
 
