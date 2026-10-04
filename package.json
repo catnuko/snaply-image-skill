@@ -1,0 +1,16 @@
+{
+  "name": "snaply-image-skill",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Standalone JSX-to-image renderer (Takumi engine) used by the snaply-image skill.",
+  "scripts": {
+    "render": "node scripts/render.mjs"
+  },
+  "dependencies": {
+    "@takumi-rs/wasm": "2.5.10",
+    "react": "18.3.1",
+    "sucrase": "3.35.1",
+    "takumi-js": "2.5.10"
+  }
+}
