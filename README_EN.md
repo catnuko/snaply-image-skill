@@ -19,16 +19,90 @@ Not for photo-realistic illustration — that's the territory of text-to-image m
 
 ## Install
 
-Drop the whole directory into your skills directory, or clone it:
+This repository **is itself an Agent Skill** (it ships a root `SKILL.md`), so any harness that follows the `SKILL.md` spec can use it directly — CodeBuddy, Claude Code, Codex, Cursor, ZCode, OpenCode, Gemini CLI and 73 more.
+
+### Option 1: one-line install (recommended)
+
+Use the [skills](https://www.npmjs.com/package/skills) CLI — it detects which harnesses you have and installs into them:
 
 ```bash
-git clone https://github.com/catnuko/snaply-image-skill.git
+npx skills add catnuko/snaply-image-skill
 ```
 
-Dependencies are installed automatically on first render (`@takumi-rs/wasm` + `takumi-js` + `react` + `sucrase`). You can also install them manually:
+Useful flags:
 
 ```bash
-npm install
+# global (user-level) install; without -g it installs project-level
+npx skills add catnuko/snaply-image-skill -g
+
+# target specific harnesses (several, or * for all)
+npx skills add catnuko/snaply-image-skill -g -a codebuddy claude-code cursor
+
+# non-interactive (scripts / CI)
+npx skills add catnuko/snaply-image-skill -g -y
+
+# list available skills without installing
+npx skills add catnuko/snaply-image-skill -l
+
+# copy instead of symlink (harness dir on another disk / needs its own copy)
+npx skills add catnuko/snaply-image-skill -g --copy
+```
+
+That's it — just ask your agent "make me a poster about X" and the skill triggers. No restart needed.
+
+### Option 2: clone into a harness directory
+
+```bash
+# universal directory (Codex / Cursor / Cline / Zed / OpenCode / Amp all share this one)
+git clone https://github.com/catnuko/snaply-image-skill.git ~/.agents/skills/snaply-image
+
+# or the harness-specific directory
+git clone https://github.com/catnuko/snaply-image-skill.git ~/.codebuddy/skills/snaply-image
+git clone https://github.com/catnuko/snaply-image-skill.git ~/.claude/skills/snaply-image
+git clone https://github.com/catnuko/snaply-image-skill.git ~/.codex/skills/snaply-image
+```
+
+Clone once and symlink the rest if you use several harnesses:
+
+```bash
+git clone https://github.com/catnuko/snaply-image-skill.git ~/.agents/skills/snaply-image
+mkdir -p ~/.codebuddy/skills
+ln -s ~/.agents/skills/snaply-image ~/.codebuddy/skills/snaply-image
+```
+
+### Where harnesses look for skills
+
+| Harness | User-level (global) | Project-level |
+| --- | --- | --- |
+| CodeBuddy | `~/.codebuddy/skills/` | `.codebuddy/skills/` |
+| ZCode | `~/.zcode/skills/` | `.zcode/skills/` |
+| Claude Code | `~/.claude/skills/` | `.claude/skills/` |
+| Codex | `~/.codex/skills/` | `.agents/skills/` |
+| Cursor | `~/.cursor/skills/` | `.agents/skills/` |
+| Cline / Zed / Amp | `~/.agents/skills/` | `.agents/skills/` |
+| OpenCode | `~/.config/opencode/skills/` | `.agents/skills/` |
+| Gemini CLI | `~/.gemini/skills/` | `.agents/skills/` |
+| GitHub Copilot | `~/.copilot/skills/` | `.agents/skills/` |
+| Trae | `~/.trae/skills/` | `.trae/skills/` |
+| Roo Code | `~/.roo/skills/` | `.roo/skills/` |
+| Kilo Code | `~/.kilo/skills/` | `.agents/skills/` |
+| iFlow CLI | `~/.iflow/skills/` | `.iflow/skills/` |
+
+The directory name must match `name: snaply-image` in `SKILL.md`, otherwise the harness won't pick it up.
+
+### Dependencies
+
+Rendering dependencies are installed **automatically on first run** (`@takumi-rs/wasm` + `takumi-js` + `react` + `sucrase`), into the skill's own `node_modules/` so they don't affect other skills. To pre-install:
+
+```bash
+cd ~/.agents/skills/snaply-image && npm install
+```
+
+### Updating
+
+```bash
+cd ~/.agents/skills/snaply-image && git pull       # if you cloned manually
+npx skills update snaply-image -g                   # if you installed via the CLI
 ```
 
 ## Usage

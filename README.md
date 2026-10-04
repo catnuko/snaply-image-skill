@@ -19,16 +19,92 @@
 
 ## 安装
 
-把整个目录放进你的 skills 目录，或直接克隆：
+本仓库**本身就是一个 Agent Skill**（根目录含 `SKILL.md`），任何遵循 `SKILL.md` 规范的
+harness（CodeBuddy、Claude Code、Codex、Cursor、ZCode、OpenCode、Gemini CLI… 共 79 种）都能直接用。
+
+### 方式一：一键安装（推荐）
+
+用 [skills](https://www.npmjs.com/package/skills) CLI，自动识别本机已装的 harness 并装进去：
 
 ```bash
-git clone https://github.com/catnuko/snaply-image-skill.git
+npx skills add catnuko/snaply-image-skill
 ```
 
-依赖在首次渲染时自动安装（`@takumi-rs/wasm` + `takumi-js` + `react` + `sucrase`）。也可以手动装：
+常用参数：
 
 ```bash
-npm install
+# 全局安装（默认装到项目级，加 -g 装到用户级）
+npx skills add catnuko/snaply-image-skill -g
+
+# 指定 harness（可多个，或用 * 表示全部）
+npx skills add catnuko/snaply-image-skill -g -a codebuddy claude-code cursor
+
+# 免交互（适合脚本 / CI）
+npx skills add catnuko/snaply-image-skill -g -y
+
+# 只看仓库里有哪些技能，不装
+npx skills add catnuko/snaply-image-skill -l
+
+# 拷贝而非软链（harness 目录在别的磁盘 / 需要独立副本时用）
+npx skills add catnuko/snaply-image-skill -g --copy
+```
+
+装完直接对 Agent 说「帮我生成一张 XX 海报」就会触发，无需重启。
+
+### 方式二：手动克隆到 harness 目录
+
+```bash
+# 通用目录（Codex / Cursor / Cline / Zed / OpenCode / Amp 等共用这一个）
+git clone https://github.com/catnuko/snaply-image-skill.git ~/.agents/skills/snaply-image
+
+# 或各家自己的目录
+git clone https://github.com/catnuko/snaply-image-skill.git ~/.codebuddy/skills/snaply-image
+git clone https://github.com/catnuko/snaply-image-skill.git ~/.claude/skills/snaply-image
+git clone https://github.com/catnuko/snaply-image-skill.git ~/.codex/skills/snaply-image
+```
+
+想省事可以只克隆一次，然后软链给其他 harness：
+
+```bash
+git clone https://github.com/catnuko/snaply-image-skill.git ~/.agents/skills/snaply-image
+mkdir -p ~/.codebuddy/skills
+ln -s ~/.agents/skills/snaply-image ~/.codebuddy/skills/snaply-image
+```
+
+### 常见 harness 的技能目录
+
+| Harness | 用户级（全局） | 项目级 |
+| --- | --- | --- |
+| CodeBuddy | `~/.codebuddy/skills/` | `.codebuddy/skills/` |
+| ZCode | `~/.zcode/skills/` | `.zcode/skills/` |
+| Claude Code | `~/.claude/skills/` | `.claude/skills/` |
+| Codex | `~/.codex/skills/` | `.agents/skills/` |
+| Cursor | `~/.cursor/skills/` | `.agents/skills/` |
+| Cline / Zed / Amp | `~/.agents/skills/` | `.agents/skills/` |
+| OpenCode | `~/.config/opencode/skills/` | `.agents/skills/` |
+| Gemini CLI | `~/.gemini/skills/` | `.agents/skills/` |
+| GitHub Copilot | `~/.copilot/skills/` | `.agents/skills/` |
+| Trae | `~/.trae/skills/` | `.trae/skills/` |
+| Roo Code | `~/.roo/skills/` | `.roo/skills/` |
+| Kilo Code | `~/.kilo/skills/` | `.agents/skills/` |
+| iFlow CLI | `~/.iflow/skills/` | `.iflow/skills/` |
+
+目录名必须与 `SKILL.md` 里的 `name: snaply-image` 一致，否则 harness 认不出来。
+
+### 依赖
+
+渲染依赖在**首次运行时自动安装**（`@takumi-rs/wasm` + `takumi-js` + `react` + `sucrase`），
+装进技能目录自己的 `node_modules/`，不影响其它技能。也可以提前手动装：
+
+```bash
+cd ~/.agents/skills/snaply-image && npm install
+```
+
+### 更新
+
+```bash
+cd ~/.agents/skills/snaply-image && git pull      # 手动克隆的
+npx skills update snaply-image -g # 用 skills CLI 装的
 ```
 
 ## 用法
